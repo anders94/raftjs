@@ -72,6 +72,7 @@ const main = (t) => {
 	}
 	else if (msg == 'leader') {
 	    console.log('yay - i\'m leader!');
+	    t.leader = t.host + ':' + t.port;
 
 	    socket.send('leader ack', rinfo.port, rinfo.address, (err) => {
 		if (err)
@@ -83,7 +84,6 @@ const main = (t) => {
 	else if (msg == 'leader ack') {
 	    console.log('leader acknowledged', rinfo.address, rinfo.port);
 	    t.leader = rinfo.address + ':' + rinfo.port;
-	    // TODO: remember and use this peer as leader
 
 	}
 
@@ -110,18 +110,10 @@ const main = (t) => {
 		}, rnd());
 
 	}
-
-	/*
-	for (const peer of t.peers) {
-	    //console.log('ping', peer[0], peer[1]);
-	    socket.send('ping', peer[1], peer[0], (err) => {
-                if (err)
-                    console.log(err);
-
-            });
+	else { // leader liveness check
+	    console.log('leader is', t.leader.split(':'));
 
 	}
-	*/
 
 	console.log();
     }, 1000);
