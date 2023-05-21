@@ -5,7 +5,7 @@ A Node.js implementation of the RAFT protocol using UDP.
 (very early - not yet functional - work is in progress)
 
 ## Usage
-Either use the included `node1.js`, `node2.js` and `node3.js`.
+Either use the included `node1.js`, `node2.js` and `node3.js` or do something like this:
 ```js
 const RaftNode = require('./lib');
 
